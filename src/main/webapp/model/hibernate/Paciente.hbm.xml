@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/09/2013 21:12:49 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="model.hibernate.Paciente" table="paciente" catalog="sghh">
+        <id name="pacienteId" type="java.lang.Integer">
+            <column name="PacienteId" />
+            <generator class="identity" />
+        </id>
+        <property name="nome" type="string">
+            <column name="Nome" length="100" not-null="true" />
+        </property>
+        <property name="sexo" type="byte">
+            <column name="Sexo" not-null="true" />
+        </property>
+        <property name="cpf" type="string">
+            <column name="Cpf" length="11" not-null="true" unique="true" />
+        </property>
+        <property name="logradouro" type="string">
+            <column name="Logradouro" length="50" />
+        </property>
+        <property name="numero" type="string">
+            <column name="Numero" length="10" />
+        </property>
+        <property name="complemento" type="string">
+            <column name="Complemento" length="10" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="Bairro" length="40" />
+        </property>
+        <property name="cidade" type="string">
+            <column name="Cidade" length="40" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="2" />
+        </property>
+        <property name="tipo" type="byte">
+            <column name="Tipo" not-null="true" />
+        </property>
+        <property name="status" type="byte">
+            <column name="Status" not-null="true" />
+        </property>
+        <property name="dataHora" type="timestamp">
+            <column name="DataHora" length="19" not-null="true" />
+        </property>
+        <set name="ocupacaos" table="ocupacao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PacienteId" not-null="true" />
+            </key>
+            <one-to-many class="model.hibernate.Ocupacao" />
+        </set>
+        <set name="telefones" table="telefone" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PacienteId" not-null="true" />
+            </key>
+            <one-to-many class="model.hibernate.Telefone" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/09/2013 21:12:49 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="model.hibernate.Quarto" table="quarto" catalog="sghh">
+        <id name="quartoId" type="java.lang.Integer">
+            <column name="QuartoId" />
+            <generator class="identity" />
+        </id>
+        <property name="andar" type="string">
+            <column name="Andar" length="10" not-null="true" />
+        </property>
+        <property name="identificacao" type="string">
+            <column name="Identificacao" length="10" not-null="true" />
+        </property>
+        <property name="status" type="byte">
+            <column name="Status" not-null="true" />
+        </property>
+        <set name="leitos" table="leito" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="QuartoId" not-null="true" />
+            </key>
+            <one-to-many class="model.hibernate.Leito" />
+        </set>
+    </class>
+</hibernate-mapping>

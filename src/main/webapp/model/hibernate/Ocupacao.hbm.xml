@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/09/2013 21:12:49 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="model.hibernate.Ocupacao" table="ocupacao" catalog="sghh">
+        <id name="ocupacaoId" type="java.lang.Integer">
+            <column name="OcupacaoId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="leito" class="model.hibernate.Leito" fetch="select">
+            <column name="LeitoId" not-null="true" />
+        </many-to-one>
+        <many-to-one name="funcionarioByFuncCadastro" class="model.hibernate.Funcionario" fetch="select">
+            <column name="FuncCadastro" not-null="true" />
+        </many-to-one>
+        <many-to-one name="funcionarioByFuncBaixa" class="model.hibernate.Funcionario" fetch="select">
+            <column name="FuncBaixa" />
+        </many-to-one>
+        <many-to-one name="paciente" class="model.hibernate.Paciente" fetch="select">
+            <column name="PacienteId" not-null="true" />
+        </many-to-one>
+        <property name="laudo" type="string">
+            <column name="Laudo" length="65535" />
+        </property>
+        <property name="dataCad" type="date">
+            <column name="DataCad" length="10" not-null="true" />
+        </property>
+        <property name="horaCad" type="time">
+            <column name="HoraCad" length="8" not-null="true" />
+        </property>
+        <property name="dataBaixa" type="date">
+            <column name="DataBaixa" length="10" />
+        </property>
+        <property name="horaBaixa" type="time">
+            <column name="HoraBaixa" length="8" />
+        </property>
+    </class>
+</hibernate-mapping>
